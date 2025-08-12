@@ -65,10 +65,16 @@ export default function Topics() {
             onClick={() => window.location.href = '/'}
             className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
           >
-            <span className="text-white text-shadow-lg">🔥 LIVE TERMINAL</span>
+            <span className="text-white text-shadow-lg">🏠 HOME</span>
+          </div>
+          <div 
+            onClick={() => window.location.href = '/terminal'}
+            className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
+          >
+            <span className="text-white text-shadow-lg">🔥 TERMINAL</span>
           </div>
           <div className="degen-glass px-6 py-3 rounded-full font-bold border-2 border-cyan-400">
-            <span className="insane-glow text-white text-shadow-lg">📁 ARCHIVES 📁</span>
+            <span className="insane-glow text-white text-shadow-lg">📁 ARCHIVES</span>
           </div>
         </div>
 
@@ -98,7 +104,7 @@ export default function Topics() {
                 Progress: {currentTopicInfo?.progress?.current || 0}/{currentTopicInfo?.progress?.max || 6}
               </div>
               <button 
-                onClick={() => window.location.href = '/'}
+                onClick={() => window.location.href = '/terminal'}
                 className="degen-glass degen-hover px-4 py-2 rounded-full text-white font-bold text-xs text-shadow"
               >
                 → WATCH LIVE

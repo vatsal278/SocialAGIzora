@@ -247,6 +247,12 @@ export default function Terminal() {
           <span className="insane-glow text-white text-shadow-lg">🔥 LIVE TERMINAL 🔥</span>
         </div>
         <div 
+          onClick={() => window.location.href = '/'}
+          className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
+        >
+          <span className="text-white text-shadow-lg">🏠 HOME</span>
+        </div>
+        <div 
           onClick={() => window.location.href = '/topics'}
           className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
         >
