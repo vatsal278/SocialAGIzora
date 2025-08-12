@@ -201,16 +201,35 @@
     font-weight: bold;
   }
   
-  .animated-grid {
+  .degen-grid {
     background: 
-      linear-gradient(90deg, transparent 98%, rgba(200, 150, 255, 0.1) 100%),
-      linear-gradient(0deg, transparent 98%, rgba(200, 150, 255, 0.1) 100%);
-    background-size: 30px 30px;
-    animation: gridFloat 20s ease-in-out infinite;
+      radial-gradient(circle at 20% 80%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(255, 255, 0, 0.1) 0%, transparent 50%),
+      linear-gradient(90deg, transparent 80%, rgba(255, 0, 255, 0.3) 85%, transparent 90%),
+      linear-gradient(0deg, transparent 80%, rgba(0, 255, 255, 0.3) 85%, transparent 90%),
+      linear-gradient(45deg, transparent 80%, rgba(255, 255, 0, 0.2) 85%, transparent 90%);
+    background-size: 150px 150px, 200px 200px, 100px 100px, 20px 20px, 20px 20px, 40px 40px;
+    animation: degenFloat 8s ease-in-out infinite, colorShift 15s linear infinite;
     position: relative;
+    overflow: hidden;
   }
   
-  .animated-grid::before {
+  .degen-grid::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: 
+      repeating-linear-gradient(45deg, transparent 0px, rgba(255, 0, 255, 0.1) 1px, transparent 2px, transparent 20px),
+      repeating-linear-gradient(-45deg, transparent 0px, rgba(0, 255, 255, 0.1) 1px, transparent 2px, transparent 15px);
+    animation: rotateGrid 30s linear infinite, pulseLines 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  .degen-grid::after {
     content: '';
     position: absolute;
     top: 0;
@@ -218,81 +237,203 @@
     right: 0;
     bottom: 0;
     background: 
-      linear-gradient(45deg, transparent 48%, rgba(180, 120, 255, 0.05) 50%, transparent 52%),
-      linear-gradient(-45deg, transparent 48%, rgba(180, 120, 255, 0.05) 50%, transparent 52%);
-    background-size: 60px 60px;
-    animation: gridShift 25s linear infinite;
+      linear-gradient(90deg, transparent 90%, rgba(255, 255, 255, 0.8) 95%, transparent 100%),
+      linear-gradient(0deg, transparent 90%, rgba(255, 255, 255, 0.6) 95%, transparent 100%);
+    background-size: 80px 80px, 60px 60px;
+    animation: scanLines 3s linear infinite;
     pointer-events: none;
+    mix-blend-mode: overlay;
   }
   
-  @keyframes gridFloat {
+  @keyframes degenFloat {
     0%, 100% { 
-      background-position: 0px 0px, 0px 0px;
-      opacity: 0.6;
+      background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+      filter: hue-rotate(0deg) saturate(1) brightness(1);
     }
-    25% { 
-      background-position: 5px 5px, -5px 5px;
-      opacity: 0.8;
+    33% { 
+      background-position: 50px 30px, -30px 50px, 20px -20px, 10px 5px, -5px 10px, 15px -15px;
+      filter: hue-rotate(120deg) saturate(1.5) brightness(1.2);
+    }
+    66% { 
+      background-position: -20px -50px, 40px -40px, -30px 30px, -5px -10px, 10px -5px, -20px 20px;
+      filter: hue-rotate(240deg) saturate(2) brightness(0.8);
+    }
+  }
+  
+  @keyframes colorShift {
+    0% { 
+      filter: hue-rotate(0deg);
+    }
+    100% { 
+      filter: hue-rotate(360deg);
+    }
+  }
+  
+  @keyframes rotateGrid {
+    0% { 
+      transform: rotate(0deg) scale(1);
     }
     50% { 
-      background-position: 10px 0px, 5px -5px;
-      opacity: 0.7;
+      transform: rotate(180deg) scale(1.1);
     }
-    75% { 
-      background-position: 5px -5px, -5px -5px;
-      opacity: 0.9;
+    100% { 
+      transform: rotate(360deg) scale(1);
     }
   }
   
-  @keyframes gridShift {
+  @keyframes pulseLines {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes scanLines {
     0% { 
       background-position: 0px 0px, 0px 0px;
     }
     100% { 
-      background-position: 60px 60px, -60px 60px;
+      background-position: 80px 80px, -60px 60px;
     }
   }
   
-  .glassmorphism {
+  .degen-glass {
     background: linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.25) 0%, 
-      rgba(220, 200, 255, 0.15) 50%, 
-      rgba(255, 255, 255, 0.1) 100%);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(200, 150, 255, 0.2);
+      rgba(255, 0, 255, 0.3) 0%, 
+      rgba(0, 255, 255, 0.2) 25%,
+      rgba(255, 255, 0, 0.15) 50%,
+      rgba(255, 255, 255, 0.4) 75%,
+      rgba(255, 0, 255, 0.2) 100%);
+    backdrop-filter: blur(15px) saturate(2) contrast(1.5);
+    border: 2px solid;
+    border-image: linear-gradient(45deg, 
+      rgba(255, 0, 255, 0.8), 
+      rgba(0, 255, 255, 0.8), 
+      rgba(255, 255, 0, 0.8),
+      rgba(255, 0, 255, 0.8)) 1;
     box-shadow: 
-      0 8px 32px rgba(180, 120, 255, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      0 0 40px rgba(255, 0, 255, 0.4),
+      0 0 80px rgba(0, 255, 255, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.3),
+      inset 0 0 40px rgba(255, 0, 255, 0.1);
+    animation: degenGlow 2s ease-in-out infinite, borderShift 4s linear infinite;
+    position: relative;
+    overflow: hidden;
   }
   
-  .glassmorphism-hover {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  .degen-glass::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -200%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+      transparent 30%, 
+      rgba(255, 255, 255, 0.8) 50%, 
+      transparent 70%);
+    animation: shine 3s linear infinite;
+    pointer-events: none;
   }
   
-  .glassmorphism-hover:hover {
+  .degen-hover {
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .degen-hover:hover {
+    transform: translateY(-8px) scale(1.05) rotate(1deg);
     background: linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.35) 0%, 
-      rgba(220, 200, 255, 0.25) 50%, 
-      rgba(255, 255, 255, 0.2) 100%);
-    backdrop-filter: blur(15px);
-    border-color: rgba(180, 120, 255, 0.4);
+      rgba(255, 0, 255, 0.5) 0%, 
+      rgba(0, 255, 255, 0.4) 25%,
+      rgba(255, 255, 0, 0.3) 50%,
+      rgba(255, 255, 255, 0.6) 75%,
+      rgba(255, 0, 255, 0.4) 100%);
+    backdrop-filter: blur(25px) saturate(3) contrast(2);
     box-shadow: 
-      0 12px 40px rgba(180, 120, 255, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
+      0 0 60px rgba(255, 0, 255, 0.8),
+      0 0 120px rgba(0, 255, 255, 0.4),
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      inset 0 0 30px rgba(255, 255, 255, 0.5);
+    animation: degenGlow 1s ease-in-out infinite, wiggle 0.5s ease-in-out infinite;
   }
   
-  .pulse-glow {
-    animation: pulseGlow 3s ease-in-out infinite;
+  .insane-glow {
+    animation: insaneGlow 1.5s ease-in-out infinite, colorCycle 3s linear infinite;
   }
   
-  @keyframes pulseGlow {
+  @keyframes degenGlow {
     0%, 100% {
-      box-shadow: 0 0 20px rgba(180, 120, 255, 0.3);
+      box-shadow: 
+        0 0 40px rgba(255, 0, 255, 0.4),
+        0 0 80px rgba(0, 255, 255, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
     }
     50% {
-      box-shadow: 0 0 30px rgba(180, 120, 255, 0.6);
+      box-shadow: 
+        0 0 80px rgba(255, 0, 255, 0.8),
+        0 0 160px rgba(0, 255, 255, 0.6),
+        inset 0 0 40px rgba(255, 255, 255, 0.6);
     }
+  }
+  
+  @keyframes insaneGlow {
+    0%, 100% {
+      box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 40px rgba(255, 0, 255, 0.8),
+        0 0 60px rgba(0, 255, 255, 0.6);
+    }
+    50% {
+      box-shadow: 
+        0 0 40px rgba(255, 255, 255, 1),
+        0 0 80px rgba(255, 0, 255, 1),
+        0 0 120px rgba(0, 255, 255, 0.8);
+    }
+  }
+  
+  @keyframes colorCycle {
+    0% { filter: hue-rotate(0deg) saturate(2); }
+    33% { filter: hue-rotate(120deg) saturate(3); }
+    66% { filter: hue-rotate(240deg) saturate(2.5); }
+    100% { filter: hue-rotate(360deg) saturate(2); }
+  }
+  
+  @keyframes borderShift {
+    0% { 
+      border-image-source: linear-gradient(45deg, 
+        rgba(255, 0, 255, 0.8), 
+        rgba(0, 255, 255, 0.8), 
+        rgba(255, 255, 0, 0.8));
+    }
+    50% { 
+      border-image-source: linear-gradient(45deg, 
+        rgba(0, 255, 255, 0.8), 
+        rgba(255, 255, 0, 0.8), 
+        rgba(255, 0, 255, 0.8));
+    }
+    100% { 
+      border-image-source: linear-gradient(45deg, 
+        rgba(255, 255, 0, 0.8), 
+        rgba(255, 0, 255, 0.8), 
+        rgba(0, 255, 255, 0.8));
+    }
+  }
+  
+  @keyframes shine {
+    0% { 
+      left: -200%; 
+    }
+    100% { 
+      left: 200%; 
+    }
+  }
+  
+  @keyframes wiggle {
+    0%, 100% { transform: translateY(-8px) scale(1.05) rotate(1deg); }
+    25% { transform: translateY(-10px) scale(1.08) rotate(-1deg); }
+    75% { transform: translateY(-6px) scale(1.03) rotate(2deg); }
   }
   
   /* Custom scrollbar for webkit browsers */

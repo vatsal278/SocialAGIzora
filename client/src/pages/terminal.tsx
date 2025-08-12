@@ -134,7 +134,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed animated-grid" ref={terminalRef}>
+    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid" ref={terminalRef}>
       
       {/* Zora Terminal Header */}
       <div className="terminal-line mb-4 animate-fade-in">
@@ -213,33 +213,46 @@ export default function Terminal() {
         </div>
       )}
       
-      {/* Status Panel with Glassmorphism */}
-      <div className="fixed bottom-4 right-4 text-xs text-terminal-secondary glassmorphism p-4 rounded-xl">
-        <div className="text-terminal-primary font-bold mb-2">ZT_001 STATUS</div>
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-400 pulse-glow' : 'bg-red-400'}`}></div>
-            <span>LINK: {isConnected ? 'ESTABLISHED' : 'SEVERED'}</span>
+      {/* Insane Status Panel */}
+      <div className="fixed bottom-4 right-4 text-xs text-white degen-glass degen-hover p-4 rounded-2xl">
+        <div className="text-white font-bold mb-2 text-center insane-glow">⚡ ZT_001 NEURAL ⚡</div>
+        <div className="space-y-1 text-center">
+          <div className="flex items-center justify-center gap-2">
+            <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-lime-400 insane-glow' : 'bg-red-500'}`}></div>
+            <span className="font-bold">{isConnected ? 'LIVE' : 'DEAD'}</span>
           </div>
-          <div>MODE: DEEP_CONVERSATION</div>
-          <div>MSGS: {messages.length}</div>
-          <div>RATE: 1.25WPS</div>
-          <div>ARCHIVE: ENABLED</div>
+          <div className="text-yellow-300 font-bold">CHAOS MODE</div>
+          <div className="text-cyan-300">{messages.length} MSGS</div>
+          <div className="text-pink-300">1.25WPS</div>
+          <div className="text-green-300">AUTO-SAVE</div>
         </div>
       </div>
       
-      {/* Archive Button with Glassmorphism */}
+      {/* Extreme Archive Button */}
       <div 
         onClick={() => window.location.href = '/topics'}
-        className="fixed bottom-4 left-4 text-xs text-terminal-secondary glassmorphism glassmorphism-hover p-4 rounded-xl cursor-pointer"
+        className="fixed bottom-4 left-4 text-sm text-white degen-glass degen-hover p-4 rounded-2xl cursor-pointer"
       >
-        <div className="text-terminal-accent font-bold mb-2 flex items-center gap-2">
-          <span className="text-lg">📁</span>
+        <div className="text-center font-bold mb-2 flex items-center justify-center gap-2 insane-glow">
+          <span className="text-2xl animate-bounce">🗂️</span>
           <span>ARCHIVE</span>
         </div>
-        <div className="space-y-1 text-terminal-primary">
-          <div>~/zora_topics/</div>
-          <div className="text-terminal-secondary">Browse saved topics</div>
+        <div className="space-y-1 text-center">
+          <div className="text-cyan-300 text-xs">~/zora_brain/</div>
+          <div className="text-pink-300 text-xs font-bold">EXPLORE MADNESS</div>
+        </div>
+      </div>
+      
+      {/* Top Navigation Links */}
+      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
+        <div className="degen-glass degen-hover px-6 py-3 rounded-full text-white font-bold cursor-pointer">
+          <span className="insane-glow">🔥 LIVE TERMINAL 🔥</span>
+        </div>
+        <div 
+          onClick={() => window.location.href = '/topics'}
+          className="degen-glass degen-hover px-6 py-3 rounded-full text-white font-bold cursor-pointer"
+        >
+          <span className="insane-glow">📁 TOPIC VAULT 📁</span>
         </div>
       </div>
     </div>

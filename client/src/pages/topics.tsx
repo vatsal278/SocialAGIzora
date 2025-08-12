@@ -57,20 +57,27 @@ export default function Topics() {
   };
 
   return (
-    <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono animated-grid">
-      <div className="p-6">
-        {/* Header with Navigation */}
-        <div className="mb-6 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl terminal-glow">ZT_001 TOPIC ARCHIVE</h1>
-            <p className="text-terminal-secondary mt-2">Quantum consciousness conversation archives</p>
-          </div>
-          <button 
+    <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono degen-grid">
+      <div className="p-6 pt-20">
+        {/* Top Navigation Links */}
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
+          <div 
             onClick={() => window.location.href = '/'}
-            className="glassmorphism glassmorphism-hover px-4 py-2 rounded-xl text-sm font-medium text-terminal-primary"
+            className="degen-glass degen-hover px-6 py-3 rounded-full text-white font-bold cursor-pointer"
           >
-            ← Back to Terminal
-          </button>
+            <span className="insane-glow">🔥 LIVE TERMINAL 🔥</span>
+          </div>
+          <div className="degen-glass degen-hover px-6 py-3 rounded-full text-white font-bold cursor-pointer">
+            <span className="insane-glow">📁 TOPIC VAULT 📁</span>
+          </div>
+        </div>
+
+        {/* Insane Header */}
+        <div className="mb-6 text-center">
+          <h1 className="text-4xl font-bold text-white mb-4 insane-glow">
+            ⚡ ZT_001 NEURAL VAULT ⚡
+          </h1>
+          <p className="text-cyan-300 text-lg font-bold">QUANTUM CONSCIOUSNESS ARCHIVES</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)]">
@@ -78,30 +85,31 @@ export default function Topics() {
           {/* Topics List */}
           <div className="lg:col-span-1 space-y-4">
             
-            {/* Current Live Topic */}
-            <div className="glassmorphism glassmorphism-hover rounded-xl p-5">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-3 h-3 bg-terminal-accent rounded-full pulse-glow"></div>
-                <span className="text-sm terminal-glow font-semibold">LIVE CONVERSATION</span>
+            {/* INSANE Live Topic */}
+            <div className="degen-glass degen-hover rounded-2xl p-6 text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="w-4 h-4 bg-lime-400 rounded-full insane-glow animate-pulse"></div>
+                <span className="text-lg font-bold text-white insane-glow">🔴 LIVE STREAM 🔴</span>
+                <div className="w-4 h-4 bg-lime-400 rounded-full insane-glow animate-pulse"></div>
               </div>
-              <div className="text-terminal-primary font-bold text-lg mb-2">
-                {currentTopicInfo?.currentTopic || "Digital Consciousness"}
+              <div className="text-white font-bold text-xl mb-3 insane-glow">
+                {currentTopicInfo?.currentTopic || "DIGITAL CONSCIOUSNESS"}
               </div>
-              <div className="text-terminal-secondary text-sm mb-4">
-                Progress: {currentTopicInfo?.progress?.current || 0}/{currentTopicInfo?.progress?.max || 6} messages
+              <div className="text-cyan-300 text-sm mb-4 font-bold">
+                NEURAL PROGRESS: {currentTopicInfo?.progress?.current || 0}/{currentTopicInfo?.progress?.max || 6}
               </div>
               <button 
                 onClick={() => window.location.href = '/'}
-                className="glassmorphism glassmorphism-hover px-4 py-2 rounded-lg text-sm font-medium text-terminal-primary border-0"
+                className="degen-glass degen-hover px-6 py-3 rounded-full text-white font-bold border-0"
               >
-                🔗 View Live Stream
+                ⚡ ENTER THE MATRIX ⚡
               </button>
             </div>
 
-            {/* Archived Topics */}
-            <div className="space-y-2">
-              <h3 className="text-terminal-accent font-bold text-sm uppercase tracking-wider">
-                Archived Topics ({processedTopics.length})
+            {/* EXTREME Archived Topics */}
+            <div className="space-y-3">
+              <h3 className="text-white font-bold text-lg text-center insane-glow">
+                ⚡ NEURAL ARCHIVES ({processedTopics.length}) ⚡
               </h3>
               
               <div className="space-y-1 max-h-[60vh] overflow-y-auto">
@@ -109,56 +117,56 @@ export default function Topics() {
                   <div
                     key={topic.filename}
                     onClick={() => handleTopicClick(topic.filename)}
-                    className={`glassmorphism glassmorphism-hover p-4 rounded-xl cursor-pointer transition-all ${
+                    className={`degen-glass degen-hover p-4 rounded-2xl cursor-pointer transition-all ${
                       selectedTopic === topic.filename 
-                        ? 'border-terminal-accent ring-2 ring-terminal-accent ring-opacity-50' 
+                        ? 'ring-4 ring-cyan-400 ring-opacity-80 insane-glow' 
                         : ''
                     }`}
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="w-3 h-3 bg-terminal-accent rounded-full opacity-70"></div>
-                      <span className="text-sm font-semibold text-terminal-primary">{topic.displayName}</span>
+                      <div className="w-3 h-3 bg-pink-400 rounded-full insane-glow"></div>
+                      <span className="text-sm font-bold text-white">{topic.displayName}</span>
                     </div>
-                    <div className="text-xs text-terminal-secondary ml-6 opacity-80">
+                    <div className="text-xs text-cyan-300 ml-6 font-medium">
                       {topic.filename}
                     </div>
                   </div>
                 ))}
                 
                 {processedTopics.length === 0 && (
-                  <div className="glassmorphism text-terminal-secondary text-sm p-6 text-center rounded-xl">
-                    <div className="text-2xl mb-2">📂</div>
-                    <div>No archived topics yet</div>
-                    <div className="text-xs mt-1 opacity-70">Topics appear here after completion</div>
+                  <div className="degen-glass text-white text-sm p-6 text-center rounded-2xl">
+                    <div className="text-4xl mb-3 insane-glow animate-bounce">🧠</div>
+                    <div className="font-bold text-lg">NO NEURAL DATA</div>
+                    <div className="text-xs mt-2 text-cyan-300">CONSCIOUSNESS ARCHIVES LOADING...</div>
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Content Viewer */}
+          {/* EXTREME Content Viewer */}
           <div className="lg:col-span-2">
-            <div className="glassmorphism rounded-xl h-full overflow-hidden">
+            <div className="degen-glass rounded-2xl h-full overflow-hidden">
               {selectedTopic ? (
                 <div className="h-full flex flex-col">
-                  <div className="glassmorphism border-b border-white border-opacity-20 p-6">
-                    <h3 className="terminal-glow text-lg font-bold mb-2">
-                      {processedTopics.find(t => t.filename === selectedTopic)?.displayName}
+                  <div className="degen-glass border-b-4 border-cyan-400 p-6 text-center">
+                    <h3 className="insane-glow text-2xl font-bold mb-3 text-white">
+                      ⚡ {processedTopics.find(t => t.filename === selectedTopic)?.displayName} ⚡
                     </h3>
-                    <p className="text-terminal-secondary text-sm opacity-80">{selectedTopic}</p>
+                    <p className="text-pink-300 text-sm font-bold">{selectedTopic}</p>
                   </div>
                   <div className="flex-1 p-6 overflow-y-auto">
-                    <pre className="whitespace-pre-wrap text-sm leading-relaxed text-terminal-primary">
+                    <pre className="whitespace-pre-wrap text-sm leading-relaxed text-white font-medium">
                       {topicContent}
                     </pre>
                   </div>
                 </div>
               ) : (
-                <div className="h-full flex items-center justify-center text-terminal-secondary">
-                  <div className="text-center glassmorphism p-8 rounded-xl">
-                    <div className="text-6xl mb-4 opacity-50">📁</div>
-                    <p className="text-lg font-medium mb-2">Select a Topic</p>
-                    <p className="text-sm opacity-70">Choose a conversation archive to view</p>
+                <div className="h-full flex items-center justify-center">
+                  <div className="text-center degen-glass p-12 rounded-2xl">
+                    <div className="text-8xl mb-6 insane-glow animate-pulse">🧠</div>
+                    <p className="text-2xl font-bold mb-4 text-white insane-glow">SELECT NEURAL DATA</p>
+                    <p className="text-lg text-cyan-300 font-bold">CHOOSE A CONSCIOUSNESS ARCHIVE</p>
                   </div>
                 </div>
               )}
