@@ -50,10 +50,11 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
   
-  /* Terminal colors */
-  --terminal-black: hsl(0 0% 0%);
-  --terminal-green: hsl(120 100% 50%);
-  --terminal-dark-green: hsl(120 100% 25%);
+  /* Terminal colors - Light Purple Theme */
+  --terminal-bg: hsl(0 0% 100%);
+  --terminal-primary: hsl(270 50% 60%);
+  --terminal-secondary: hsl(280 30% 80%);
+  --terminal-accent: hsl(260 40% 70%);
 }
 
 .dark {
@@ -116,16 +117,16 @@
 /* Terminal specific styles */
 @layer utilities {
   .terminal-container {
-    background-color: var(--terminal-black);
-    color: var(--terminal-green);
+    background-color: var(--terminal-bg);
+    color: var(--terminal-primary);
     font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.8;
   }
   
   .terminal-glow {
-    color: var(--terminal-green);
-    text-shadow: 0 0 5px var(--terminal-green), 0 0 10px var(--terminal-green), 0 0 15px var(--terminal-green);
+    color: var(--terminal-primary);
+    text-shadow: 0 0 3px var(--terminal-primary), 0 0 6px var(--terminal-primary);
     font-weight: bold;
   }
   
@@ -139,7 +140,10 @@
     animation: fadeIn 0.8s ease-in forwards;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--terminal-dark-green);
+    border-bottom: 1px solid var(--terminal-secondary);
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(230,225,255,0.3) 100%);
+    border-radius: 8px;
+    padding: 1rem;
   }
   
   .message-content {
@@ -151,16 +155,20 @@
     padding: 0.5rem 0;
   }
   
-  .terminal-dark-green {
-    color: var(--terminal-dark-green);
+  .terminal-secondary {
+    color: var(--terminal-secondary);
   }
   
-  .terminal-green {
-    color: var(--terminal-green);
+  .terminal-primary {
+    color: var(--terminal-primary);
   }
   
-  .terminal-black {
-    background-color: var(--terminal-black);
+  .terminal-accent {
+    color: var(--terminal-accent);
+  }
+  
+  .terminal-bg {
+    background-color: var(--terminal-bg);
   }
   
   @keyframes fadeIn {
@@ -189,8 +197,14 @@
   
   .typing-cursor {
     animation: blink 1s infinite;
-    color: var(--terminal-green);
+    color: var(--terminal-primary);
     font-weight: bold;
+  }
+  
+  .backroom-grid {
+    background: linear-gradient(90deg, transparent 98%, var(--terminal-secondary) 100%),
+                linear-gradient(var(--terminal-secondary) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
   
   /* Custom scrollbar for webkit browsers */
@@ -199,16 +213,16 @@
   }
   
   .terminal-container::-webkit-scrollbar-track {
-    background: var(--terminal-black);
+    background: var(--terminal-bg);
   }
   
   .terminal-container::-webkit-scrollbar-thumb {
-    background: var(--terminal-dark-green);
+    background: var(--terminal-secondary);
     border-radius: 4px;
   }
   
   .terminal-container::-webkit-scrollbar-thumb:hover {
-    background: var(--terminal-green);
+    background: var(--terminal-primary);
   }
   
   /* Responsive font sizing */

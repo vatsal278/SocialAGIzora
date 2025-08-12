@@ -27,17 +27,35 @@ const conversationTopics = [
 
 let currentTopic = conversationTopics[0];
 let messagesOnCurrentTopic = 0;
+let topicMessages: any[] = [];
 const maxMessagesPerTopic = 6;
 
 export async function generateConversationLine(
   context: ConversationContext[],
-  nextEntity: "ENTITY_A" | "ENTITY_B"
+  nextEntity: "ENTITY_A" | "ENTITY_B",
+  storage?: any
 ): Promise<string> {
   try {
     // Switch topic after reaching message limit
     if (messagesOnCurrentTopic >= maxMessagesPerTopic) {
-      currentTopic = conversationTopics[Math.floor(Math.random() * conversationTopics.length)];
+      // Save current topic to file if we have storage and messages
+      if (storage && topicMessages.length > 0) {
+        try {
+          await storage.saveTopicFile(currentTopic, topicMessages);
+          console.log(`Saved topic "${currentTopic}" with ${topicMessages.length} messages`);
+        } catch (error) {
+          console.error('Error saving topic file:', error);
+        }
+      }
+      
+      // Reset for new topic
+      const oldTopic = currentTopic;
+      do {
+        currentTopic = conversationTopics[Math.floor(Math.random() * conversationTopics.length)];
+      } while (currentTopic === oldTopic && conversationTopics.length > 1);
+      
       messagesOnCurrentTopic = 0;
+      topicMessages = [];
     }
 
     // Build context from recent messages
@@ -81,13 +99,39 @@ Respond only with the conversation content, no prefixes or explanations.`;
       temperature: 0.85,
     });
 
+    const content = response.choices[0].message.content?.trim() || getFallbackMessage(currentTopic);
+    
+    // Store message for topic archiving
+    topicMessages.push({
+      entity: nextEntity,
+      content,
+      timestamp: new Date()
+    });
+    
     messagesOnCurrentTopic++;
-    return response.choices[0].message.content?.trim() || getFallbackMessage(currentTopic);
+    return content;
   } catch (error) {
     console.error("OpenAI API error:", error);
+    const fallbackContent = getFallbackMessage(currentTopic);
+    
+    // Store fallback message for topic archiving
+    topicMessages.push({
+      entity: nextEntity,
+      content: fallbackContent,
+      timestamp: new Date()
+    });
+    
     messagesOnCurrentTopic++;
-    return getFallbackMessage(currentTopic);
+    return fallbackContent;
   }
+}
+
+export function getCurrentTopic(): string {
+  return currentTopic;
+}
+
+export function getTopicProgress(): { current: number, max: number } {
+  return { current: messagesOnCurrentTopic, max: maxMessagesPerTopic };
 }
 
 function getFallbackMessage(topic: string): string {

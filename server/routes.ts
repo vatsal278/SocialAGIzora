@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { generateConversationLine } from "./services/openai";
+import { generateConversationLine, getCurrentTopic, getTopicProgress } from "./services/openai";
 import { insertConversationMessageSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -45,7 +45,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             content: msg.content,
             timestamp: msg.timestamp
           })),
-          nextEntity
+          nextEntity,
+          storage
         );
         
         // Save to storage
@@ -69,8 +70,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
     };
 
-    // Start generating messages every 5 seconds
-    intervalId = setInterval(generateAndSendMessage, 5000);
+    // Start generating messages every 30 seconds to reduce rate limits
+    intervalId = setInterval(generateAndSendMessage, 30000);
 
     // Handle client disconnect
     req.on('close', () => {
@@ -88,6 +89,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(messages);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch messages" });
+    }
+  });
+
+  // Get current topic and progress
+  app.get("/api/conversation/topic", async (req, res) => {
+    try {
+      res.json({
+        currentTopic: getCurrentTopic(),
+        progress: getTopicProgress()
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch topic info" });
+    }
+  });
+
+  // Get list of saved topic files
+  app.get("/api/topics", async (req, res) => {
+    try {
+      const files = await storage.getTopicFiles();
+      res.json(files);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch topic files" });
+    }
+  });
+
+  // Get content of a specific topic file
+  app.get("/api/topics/:filename", async (req, res) => {
+    try {
+      const content = await storage.getTopicFileContent(req.params.filename);
+      res.json({ content });
+    } catch (error) {
+      res.status(404).json({ message: "Topic file not found" });
     }
   });
 
