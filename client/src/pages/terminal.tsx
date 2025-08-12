@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { ConversationMessage } from "@shared/schema";
+import { useQuery } from "@tanstack/react-query";
 
 interface TerminalMessage extends ConversationMessage {
   isNew?: boolean;
@@ -14,6 +15,20 @@ export default function Terminal() {
   const terminalRef = useRef<HTMLDivElement>(null);
   const eventSourceRef = useRef<EventSource | null>(null);
   const typingIntervals = useRef<Map<string, NodeJS.Timeout>>(new Map());
+
+  // Get current topic info for display
+  interface TopicInfo {
+    currentTopic: string;
+    progress: {
+      current: number;
+      max: number;
+    };
+  }
+
+  const { data: topicInfo } = useQuery<TopicInfo>({
+    queryKey: ["/api/conversation/topic"],
+    refetchInterval: 10000,
+  });
 
   useEffect(() => {
     // Connect to SSE stream
@@ -135,8 +150,18 @@ export default function Terminal() {
         <span className="text-terminal-secondary">SYS: Backroom neural networks initialized</span>
       </div>
       
-      <div className="terminal-line mb-6 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+      <div className="terminal-line mb-2 animate-fade-in" style={{ animationDelay: '0.6s' }}>
         <span className="text-terminal-accent">STATUS: Deep conversation protocol active | Topic archival enabled</span>
+      </div>
+      
+      <div className="terminal-line mb-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+        <span className="text-terminal-secondary">CURRENT_TOPIC: </span>
+        <span className="text-terminal-primary font-bold">
+          {topicInfo?.currentTopic || "Initializing..."}
+        </span>
+        <span className="text-terminal-secondary ml-4">
+          [{topicInfo?.progress?.current || 0}/{topicInfo?.progress?.max || 6}]
+        </span>
       </div>
       
       {/* Conversation Container */}
@@ -198,12 +223,15 @@ export default function Terminal() {
         <div>ARCH: AUTO_ENABLED</div>
       </div>
       
-      {/* Topic Directory Indicator */}
-      <div className="fixed bottom-4 left-4 text-xs text-terminal-secondary opacity-80 bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded border border-terminal-secondary">
-        <div className="text-terminal-accent font-bold mb-1">DIRECTORY</div>
+      {/* Topic Directory Indicator - Now Clickable */}
+      <div 
+        onClick={() => window.location.href = '/topics'}
+        className="fixed bottom-4 left-4 text-xs text-terminal-secondary opacity-80 bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded border border-terminal-secondary cursor-pointer hover:opacity-100 hover:border-terminal-accent transition-all"
+      >
+        <div className="text-terminal-accent font-bold mb-1">📁 ARCHIVE</div>
         <div>~/zora_topics/</div>
         <div>zt_001_*.txt</div>
-        <div className="text-terminal-primary">Auto-archiving active</div>
+        <div className="text-terminal-primary">Click to browse</div>
       </div>
     </div>
   );
