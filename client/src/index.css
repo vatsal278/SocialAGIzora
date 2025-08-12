@@ -120,17 +120,35 @@
     color: var(--terminal-green);
     font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.6;
   }
   
   .terminal-glow {
     color: var(--terminal-green);
     text-shadow: 0 0 5px var(--terminal-green), 0 0 10px var(--terminal-green), 0 0 15px var(--terminal-green);
+    font-weight: bold;
   }
   
   .terminal-line {
     opacity: 0;
     animation: fadeIn 0.5s ease-in forwards;
+  }
+  
+  .message-block {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in forwards;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--terminal-dark-green);
+  }
+  
+  .message-content {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 100%;
+    word-wrap: break-word;
+    text-align: justify;
+    padding: 0.5rem 0;
   }
   
   .terminal-dark-green {
@@ -148,7 +166,7 @@
   @keyframes fadeIn {
     from { 
       opacity: 0; 
-      transform: translateY(10px); 
+      transform: translateY(15px); 
     }
     to { 
       opacity: 1; 
@@ -157,7 +175,7 @@
   }
   
   .animate-fade-in {
-    animation: fadeIn 0.5s ease-in forwards;
+    animation: fadeIn 0.8s ease-in forwards;
   }
   
   @keyframes blink {
@@ -171,6 +189,8 @@
   
   .typing-cursor {
     animation: blink 1s infinite;
+    color: var(--terminal-green);
+    font-weight: bold;
   }
   
   /* Custom scrollbar for webkit browsers */
@@ -196,6 +216,27 @@
     .terminal-container {
       font-size: 14px;
       padding: 1rem;
+    }
+    
+    .message-content {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    
+    .message-block {
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .terminal-container {
+      font-size: 12px;
+      padding: 0.75rem;
+    }
+    
+    .message-content {
+      font-size: 12px;
+      line-height: 1.5;
     }
   }
 }

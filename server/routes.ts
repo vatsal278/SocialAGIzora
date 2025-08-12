@@ -69,8 +69,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
     };
 
-    // Start generating messages every 8 seconds
-    intervalId = setInterval(generateAndSendMessage, 8000);
+    // Start generating messages every 5 seconds
+    intervalId = setInterval(generateAndSendMessage, 5000);
 
     // Handle client disconnect
     req.on('close', () => {
