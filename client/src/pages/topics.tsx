@@ -80,10 +80,10 @@ export default function Topics() {
           <p className="text-cyan-200 text-lg font-bold text-shadow">QUANTUM CONSCIOUSNESS ARCHIVES</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-220px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)] max-w-7xl mx-auto">
           
           {/* Topics List */}
-          <div className="lg:col-span-1 space-y-4">
+          <div className="lg:col-span-1 space-y-4 overflow-hidden">
             
             {/* INSANE Live Topic */}
             <div className="degen-glass degen-hover rounded-2xl p-6 text-center">
@@ -107,12 +107,12 @@ export default function Topics() {
             </div>
 
             {/* EXTREME Archived Topics */}
-            <div className="space-y-3">
-              <h3 className="text-white font-bold text-lg text-center insane-glow text-shadow-lg">
+            <div className="space-y-3 flex-1 flex flex-col min-h-0">
+              <h3 className="text-white font-bold text-lg text-center insane-glow text-shadow-lg flex-shrink-0">
                 ⚡ NEURAL ARCHIVES ({processedTopics.length}) ⚡
               </h3>
               
-              <div className="space-y-2 max-h-[50vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent">
+              <div className="space-y-2 flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent min-h-0">
                 {processedTopics.map((topic, index) => (
                   <div
                     key={topic.filename}
@@ -145,28 +145,28 @@ export default function Topics() {
           </div>
 
           {/* EXTREME Content Viewer */}
-          <div className="lg:col-span-2">
-            <div className="degen-glass rounded-2xl h-full overflow-hidden">
+          <div className="lg:col-span-2 overflow-hidden">
+            <div className="degen-glass rounded-2xl h-full flex flex-col">
               {selectedTopic ? (
-                <div className="h-full flex flex-col">
-                  <div className="degen-glass border-b-4 border-cyan-400 p-6 text-center">
-                    <h3 className="insane-glow text-2xl font-bold mb-3 text-white text-shadow-lg">
+                <>
+                  <div className="degen-glass border-b-4 border-cyan-400 p-4 text-center flex-shrink-0">
+                    <h3 className="insane-glow text-xl font-bold mb-2 text-white text-shadow-lg">
                       ⚡ {processedTopics.find(t => t.filename === selectedTopic)?.displayName} ⚡
                     </h3>
-                    <p className="text-pink-200 text-sm font-bold text-shadow">{selectedTopic}</p>
+                    <p className="text-pink-200 text-xs font-bold text-shadow">{selectedTopic}</p>
                   </div>
-                  <div className="flex-1 p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent">
+                  <div className="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent min-h-0">
                     <pre className="whitespace-pre-wrap text-sm leading-relaxed text-white font-medium text-shadow">
                       {topicContent}
                     </pre>
                   </div>
-                </div>
+                </>
               ) : (
                 <div className="h-full flex items-center justify-center">
-                  <div className="text-center degen-glass p-12 rounded-2xl">
-                    <div className="text-8xl mb-6 insane-glow animate-pulse">🧠</div>
-                    <p className="text-2xl font-bold mb-4 text-white insane-glow text-shadow-lg">SELECT NEURAL DATA</p>
-                    <p className="text-lg text-cyan-200 font-bold text-shadow">CHOOSE A CONSCIOUSNESS ARCHIVE</p>
+                  <div className="text-center degen-glass p-8 rounded-2xl">
+                    <div className="text-6xl mb-4 insane-glow animate-pulse">🧠</div>
+                    <p className="text-xl font-bold mb-3 text-white insane-glow text-shadow-lg">SELECT NEURAL DATA</p>
+                    <p className="text-sm text-cyan-200 font-bold text-shadow">Choose a consciousness archive to explore</p>
                   </div>
                 </div>
               )}

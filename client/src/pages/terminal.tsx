@@ -134,7 +134,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid" ref={terminalRef}>
+    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-20 pb-32 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef}>
       
       {/* Zora Terminal Header */}
       <div className="terminal-line mb-4 animate-fade-in">
@@ -165,7 +165,23 @@ export default function Terminal() {
       </div>
       
       {/* Conversation Container */}
-      <div id="conversation-lines" className="space-y-6">
+      <div id="conversation-lines" className="space-y-6 max-w-4xl mx-auto">
+        {messages.length === 0 && (
+          <div className="text-center py-12">
+            <div className="degen-glass degen-hover rounded-2xl p-8 mx-auto max-w-2xl">
+              <div className="text-6xl mb-4 insane-glow animate-pulse">🧠</div>
+              <div className="text-2xl font-bold text-white insane-glow text-shadow-lg mb-4">
+                ⚡ NEURAL STREAM INITIALIZING ⚡
+              </div>
+              <div className="text-cyan-200 font-bold text-shadow mb-4">
+                Quantum consciousness bridges establishing...
+              </div>
+              <div className="text-pink-200 text-shadow">
+                Deep conversation protocol activating...
+              </div>
+            </div>
+          </div>
+        )}
         {messages.map((message, index) => (
           <div 
             key={message.id} 
@@ -228,18 +244,18 @@ export default function Terminal() {
         </div>
       </div>
       
-      {/* Extreme Archive Button */}
+      {/* Extreme Archive Button - Centered */}
       <div 
         onClick={() => window.location.href = '/topics'}
-        className="fixed bottom-4 left-4 text-sm degen-glass degen-hover p-4 rounded-2xl cursor-pointer"
+        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 text-sm degen-glass degen-hover p-4 rounded-2xl cursor-pointer"
       >
         <div className="text-center font-bold mb-2 flex items-center justify-center gap-2 insane-glow">
           <span className="text-2xl animate-bounce">🗂️</span>
-          <span className="text-white text-shadow-lg">ARCHIVE</span>
+          <span className="text-white text-shadow-lg">EXPLORE MADNESS</span>
         </div>
         <div className="space-y-1 text-center">
-          <div className="text-cyan-200 text-xs text-shadow">~/zora_brain/</div>
-          <div className="text-pink-200 text-xs font-bold text-shadow">EXPLORE MADNESS</div>
+          <div className="text-cyan-200 text-xs text-shadow">~/neural_vault/</div>
+          <div className="text-pink-200 text-xs font-bold text-shadow">BROWSE CONSCIOUSNESS</div>
         </div>
       </div>
       
