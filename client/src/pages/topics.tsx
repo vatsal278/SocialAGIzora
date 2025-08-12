@@ -80,7 +80,7 @@ export default function Topics() {
           <p className="text-cyan-200 text-lg font-bold text-shadow">QUANTUM CONSCIOUSNESS ARCHIVES</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-220px)]">
           
           {/* Topics List */}
           <div className="lg:col-span-1 space-y-4">
@@ -112,7 +112,7 @@ export default function Topics() {
                 ⚡ NEURAL ARCHIVES ({processedTopics.length}) ⚡
               </h3>
               
-              <div className="space-y-1 max-h-[60vh] overflow-y-auto">
+              <div className="space-y-2 max-h-[50vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent">
                 {processedTopics.map((topic, index) => (
                   <div
                     key={topic.filename}
@@ -155,7 +155,7 @@ export default function Topics() {
                     </h3>
                     <p className="text-pink-200 text-sm font-bold text-shadow">{selectedTopic}</p>
                   </div>
-                  <div className="flex-1 p-6 overflow-y-auto">
+                  <div className="flex-1 p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent">
                     <pre className="whitespace-pre-wrap text-sm leading-relaxed text-white font-medium text-shadow">
                       {topicContent}
                     </pre>
