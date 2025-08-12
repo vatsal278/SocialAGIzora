@@ -229,46 +229,28 @@ export default function Terminal() {
         </div>
       )}
       
-      {/* Insane Status Panel */}
-      <div className="fixed bottom-4 right-4 text-xs degen-glass degen-hover p-4 rounded-2xl">
-        <div className="text-white font-bold mb-2 text-center insane-glow text-shadow-lg">⚡ ZT_001 NEURAL ⚡</div>
+      {/* Status Panel - Bottom Right */}
+      <div className="fixed bottom-4 right-4 text-xs degen-glass p-3 rounded-xl">
+        <div className="text-white font-bold mb-2 text-center text-shadow">ZT_001</div>
         <div className="space-y-1 text-center">
           <div className="flex items-center justify-center gap-2">
-            <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-lime-400 insane-glow' : 'bg-red-500'}`}></div>
-            <span className="font-bold text-white text-shadow">{isConnected ? 'LIVE' : 'DEAD'}</span>
+            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-lime-400 insane-glow' : 'bg-red-500'}`}></div>
+            <span className="text-white text-shadow text-xs">{isConnected ? 'LIVE' : 'OFF'}</span>
           </div>
-          <div className="text-yellow-200 font-bold text-shadow">CHAOS MODE</div>
-          <div className="text-cyan-200 text-shadow">{messages.length} MSGS</div>
-          <div className="text-pink-200 text-shadow">1.25WPS</div>
-          <div className="text-green-200 text-shadow">AUTO-SAVE</div>
-        </div>
-      </div>
-      
-      {/* Extreme Archive Button - Centered */}
-      <div 
-        onClick={() => window.location.href = '/topics'}
-        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 text-sm degen-glass degen-hover p-4 rounded-2xl cursor-pointer"
-      >
-        <div className="text-center font-bold mb-2 flex items-center justify-center gap-2 insane-glow">
-          <span className="text-2xl animate-bounce">🗂️</span>
-          <span className="text-white text-shadow-lg">EXPLORE MADNESS</span>
-        </div>
-        <div className="space-y-1 text-center">
-          <div className="text-cyan-200 text-xs text-shadow">~/neural_vault/</div>
-          <div className="text-pink-200 text-xs font-bold text-shadow">BROWSE CONSCIOUSNESS</div>
+          <div className="text-cyan-200 text-shadow text-xs">{messages.length} MSGS</div>
         </div>
       </div>
       
       {/* Top Navigation Links */}
       <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
-        <div className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer">
+        <div className="degen-glass px-6 py-3 rounded-full font-bold border-2 border-cyan-400">
           <span className="insane-glow text-white text-shadow-lg">🔥 LIVE TERMINAL 🔥</span>
         </div>
         <div 
           onClick={() => window.location.href = '/topics'}
           className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
         >
-          <span className="insane-glow text-white text-shadow-lg">📁 TOPIC VAULT 📁</span>
+          <span className="text-white text-shadow-lg">📁 ARCHIVES</span>
         </div>
       </div>
     </div>

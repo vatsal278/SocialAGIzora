@@ -65,19 +65,19 @@ export default function Topics() {
             onClick={() => window.location.href = '/'}
             className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
           >
-            <span className="insane-glow text-white text-shadow-lg">🔥 LIVE TERMINAL 🔥</span>
+            <span className="text-white text-shadow-lg">🔥 LIVE TERMINAL</span>
           </div>
-          <div className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer">
-            <span className="insane-glow text-white text-shadow-lg">📁 TOPIC VAULT 📁</span>
+          <div className="degen-glass px-6 py-3 rounded-full font-bold border-2 border-cyan-400">
+            <span className="insane-glow text-white text-shadow-lg">📁 ARCHIVES 📁</span>
           </div>
         </div>
 
-        {/* Insane Header */}
+        {/* Header */}
         <div className="mb-6 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4 insane-glow text-shadow-lg">
-            ⚡ ZT_001 NEURAL VAULT ⚡
+          <h1 className="text-3xl font-bold text-white mb-2 insane-glow text-shadow-lg">
+            ZT_001 ARCHIVES
           </h1>
-          <p className="text-cyan-200 text-lg font-bold text-shadow">QUANTUM CONSCIOUSNESS ARCHIVES</p>
+          <p className="text-cyan-200 text-sm font-bold text-shadow">Saved Conversations</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)] max-w-7xl mx-auto">
@@ -85,31 +85,30 @@ export default function Topics() {
           {/* Topics List */}
           <div className="lg:col-span-1 space-y-4 overflow-hidden">
             
-            {/* INSANE Live Topic */}
-            <div className="degen-glass degen-hover rounded-2xl p-6 text-center">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="w-4 h-4 bg-lime-400 rounded-full insane-glow animate-pulse"></div>
-                <span className="text-lg font-bold text-white insane-glow text-shadow-lg">🔴 LIVE STREAM 🔴</span>
-                <div className="w-4 h-4 bg-lime-400 rounded-full insane-glow animate-pulse"></div>
+            {/* Live Topic Status */}
+            <div className="degen-glass rounded-xl p-4 text-center">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="w-3 h-3 bg-lime-400 rounded-full insane-glow animate-pulse"></div>
+                <span className="text-sm font-bold text-white text-shadow">LIVE NOW</span>
               </div>
-              <div className="text-white font-bold text-xl mb-3 insane-glow text-shadow-lg">
-                {currentTopicInfo?.currentTopic || "DIGITAL CONSCIOUSNESS"}
+              <div className="text-white font-bold text-lg mb-2 text-shadow">
+                {currentTopicInfo?.currentTopic || "Loading..."}
               </div>
-              <div className="text-cyan-200 text-sm mb-4 font-bold text-shadow">
-                NEURAL PROGRESS: {currentTopicInfo?.progress?.current || 0}/{currentTopicInfo?.progress?.max || 6}
+              <div className="text-cyan-200 text-xs mb-3 text-shadow">
+                Progress: {currentTopicInfo?.progress?.current || 0}/{currentTopicInfo?.progress?.max || 6}
               </div>
               <button 
                 onClick={() => window.location.href = '/'}
-                className="degen-glass degen-hover px-6 py-3 rounded-full text-white font-bold border-0 text-shadow-lg"
+                className="degen-glass degen-hover px-4 py-2 rounded-full text-white font-bold text-xs text-shadow"
               >
-                ⚡ ENTER THE MATRIX ⚡
+                → WATCH LIVE
               </button>
             </div>
 
-            {/* EXTREME Archived Topics */}
+            {/* Archived Topics */}
             <div className="space-y-3 flex-1 flex flex-col min-h-0">
-              <h3 className="text-white font-bold text-lg text-center insane-glow text-shadow-lg flex-shrink-0">
-                ⚡ NEURAL ARCHIVES ({processedTopics.length}) ⚡
+              <h3 className="text-white font-bold text-sm text-center text-shadow flex-shrink-0">
+                SAVED TOPICS ({processedTopics.length})
               </h3>
               
               <div className="space-y-2 flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent min-h-0">
@@ -134,10 +133,10 @@ export default function Topics() {
                 ))}
                 
                 {processedTopics.length === 0 && (
-                  <div className="degen-glass text-white text-sm p-6 text-center rounded-2xl">
-                    <div className="text-4xl mb-3 insane-glow animate-bounce">🧠</div>
-                    <div className="font-bold text-lg text-shadow">NO NEURAL DATA</div>
-                    <div className="text-xs mt-2 text-cyan-200 text-shadow">CONSCIOUSNESS ARCHIVES LOADING...</div>
+                  <div className="degen-glass text-white text-sm p-4 text-center rounded-xl">
+                    <div className="text-2xl mb-2">📁</div>
+                    <div className="font-bold text-sm text-shadow">No Archives</div>
+                    <div className="text-xs mt-1 text-cyan-200 text-shadow">Check back later</div>
                   </div>
                 )}
               </div>
@@ -149,11 +148,11 @@ export default function Topics() {
             <div className="degen-glass rounded-2xl h-full flex flex-col">
               {selectedTopic ? (
                 <>
-                  <div className="degen-glass border-b-4 border-cyan-400 p-4 text-center flex-shrink-0">
-                    <h3 className="insane-glow text-xl font-bold mb-2 text-white text-shadow-lg">
-                      ⚡ {processedTopics.find(t => t.filename === selectedTopic)?.displayName} ⚡
+                  <div className="degen-glass border-b-2 border-cyan-400 p-3 text-center flex-shrink-0">
+                    <h3 className="text-lg font-bold mb-1 text-white text-shadow">
+                      {processedTopics.find(t => t.filename === selectedTopic)?.displayName}
                     </h3>
-                    <p className="text-pink-200 text-xs font-bold text-shadow">{selectedTopic}</p>
+                    <p className="text-pink-200 text-xs text-shadow">{selectedTopic}</p>
                   </div>
                   <div className="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent min-h-0">
                     <pre className="whitespace-pre-wrap text-sm leading-relaxed text-white font-medium text-shadow">
@@ -163,10 +162,10 @@ export default function Topics() {
                 </>
               ) : (
                 <div className="h-full flex items-center justify-center">
-                  <div className="text-center degen-glass p-8 rounded-2xl">
-                    <div className="text-6xl mb-4 insane-glow animate-pulse">🧠</div>
-                    <p className="text-xl font-bold mb-3 text-white insane-glow text-shadow-lg">SELECT NEURAL DATA</p>
-                    <p className="text-sm text-cyan-200 font-bold text-shadow">Choose a consciousness archive to explore</p>
+                  <div className="text-center degen-glass p-6 rounded-xl">
+                    <div className="text-4xl mb-3">📄</div>
+                    <p className="text-lg font-bold mb-2 text-white text-shadow">Select Topic</p>
+                    <p className="text-xs text-cyan-200 text-shadow">Choose an archive to read</p>
                   </div>
                 </div>
               )}
