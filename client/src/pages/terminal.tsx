@@ -134,7 +134,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed backroom-grid" ref={terminalRef}>
+    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed animated-grid" ref={terminalRef}>
       
       {/* Zora Terminal Header */}
       <div className="terminal-line mb-4 animate-fade-in">
@@ -213,25 +213,34 @@ export default function Terminal() {
         </div>
       )}
       
-      {/* Backroom-style Status Panel */}
-      <div className="fixed bottom-4 right-4 text-xs text-terminal-secondary opacity-80 bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded border border-terminal-secondary">
-        <div className="text-terminal-primary font-bold mb-1">ZT_001 STATUS</div>
-        <div>LINK: {isConnected ? 'ESTABLISHED' : 'SEVERED'}</div>
-        <div>MODE: BACKROOM_DEEP_CONV</div>
-        <div>MSGS: {messages.length}</div>
-        <div>RATE: 1.25WPS</div>
-        <div>ARCH: AUTO_ENABLED</div>
+      {/* Status Panel with Glassmorphism */}
+      <div className="fixed bottom-4 right-4 text-xs text-terminal-secondary glassmorphism p-4 rounded-xl">
+        <div className="text-terminal-primary font-bold mb-2">ZT_001 STATUS</div>
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-400 pulse-glow' : 'bg-red-400'}`}></div>
+            <span>LINK: {isConnected ? 'ESTABLISHED' : 'SEVERED'}</span>
+          </div>
+          <div>MODE: DEEP_CONVERSATION</div>
+          <div>MSGS: {messages.length}</div>
+          <div>RATE: 1.25WPS</div>
+          <div>ARCHIVE: ENABLED</div>
+        </div>
       </div>
       
-      {/* Topic Directory Indicator - Now Clickable */}
+      {/* Archive Button with Glassmorphism */}
       <div 
         onClick={() => window.location.href = '/topics'}
-        className="fixed bottom-4 left-4 text-xs text-terminal-secondary opacity-80 bg-white bg-opacity-10 backdrop-blur-sm p-3 rounded border border-terminal-secondary cursor-pointer hover:opacity-100 hover:border-terminal-accent transition-all"
+        className="fixed bottom-4 left-4 text-xs text-terminal-secondary glassmorphism glassmorphism-hover p-4 rounded-xl cursor-pointer"
       >
-        <div className="text-terminal-accent font-bold mb-1">📁 ARCHIVE</div>
-        <div>~/zora_topics/</div>
-        <div>zt_001_*.txt</div>
-        <div className="text-terminal-primary">Click to browse</div>
+        <div className="text-terminal-accent font-bold mb-2 flex items-center gap-2">
+          <span className="text-lg">📁</span>
+          <span>ARCHIVE</span>
+        </div>
+        <div className="space-y-1 text-terminal-primary">
+          <div>~/zora_topics/</div>
+          <div className="text-terminal-secondary">Browse saved topics</div>
+        </div>
       </div>
     </div>
   );
