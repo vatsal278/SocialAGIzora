@@ -301,11 +301,11 @@
   
   .degen-glass {
     background: linear-gradient(135deg, 
-      rgba(255, 0, 255, 0.3) 0%, 
-      rgba(0, 255, 255, 0.2) 25%,
-      rgba(255, 255, 0, 0.15) 50%,
-      rgba(255, 255, 255, 0.4) 75%,
-      rgba(255, 0, 255, 0.2) 100%);
+      rgba(0, 0, 0, 0.7) 0%, 
+      rgba(20, 0, 40, 0.8) 25%,
+      rgba(40, 0, 60, 0.75) 50%,
+      rgba(0, 0, 0, 0.8) 75%,
+      rgba(20, 0, 40, 0.7) 100%);
     backdrop-filter: blur(15px) saturate(2) contrast(1.5);
     border: 2px solid;
     border-image: linear-gradient(45deg, 
@@ -316,8 +316,8 @@
     box-shadow: 
       0 0 40px rgba(255, 0, 255, 0.4),
       0 0 80px rgba(0, 255, 255, 0.2),
-      inset 0 0 20px rgba(255, 255, 255, 0.3),
-      inset 0 0 40px rgba(255, 0, 255, 0.1);
+      inset 0 0 20px rgba(255, 255, 255, 0.1),
+      inset 0 0 40px rgba(255, 0, 255, 0.05);
     animation: degenGlow 2s ease-in-out infinite, borderShift 4s linear infinite;
     position: relative;
     overflow: hidden;
@@ -345,17 +345,17 @@
   .degen-hover:hover {
     transform: translateY(-8px) scale(1.05) rotate(1deg);
     background: linear-gradient(135deg, 
-      rgba(255, 0, 255, 0.5) 0%, 
-      rgba(0, 255, 255, 0.4) 25%,
-      rgba(255, 255, 0, 0.3) 50%,
-      rgba(255, 255, 255, 0.6) 75%,
-      rgba(255, 0, 255, 0.4) 100%);
+      rgba(0, 0, 0, 0.9) 0%, 
+      rgba(30, 0, 60, 0.9) 25%,
+      rgba(60, 0, 90, 0.85) 50%,
+      rgba(0, 0, 0, 0.9) 75%,
+      rgba(30, 0, 60, 0.85) 100%);
     backdrop-filter: blur(25px) saturate(3) contrast(2);
     box-shadow: 
       0 0 60px rgba(255, 0, 255, 0.8),
       0 0 120px rgba(0, 255, 255, 0.4),
       0 20px 40px rgba(0, 0, 0, 0.3),
-      inset 0 0 30px rgba(255, 255, 255, 0.5);
+      inset 0 0 30px rgba(255, 255, 255, 0.1);
     animation: degenGlow 1s ease-in-out infinite, wiggle 0.5s ease-in-out infinite;
   }
   
@@ -368,13 +368,13 @@
       box-shadow: 
         0 0 40px rgba(255, 0, 255, 0.4),
         0 0 80px rgba(0, 255, 255, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
     }
     50% {
       box-shadow: 
         0 0 80px rgba(255, 0, 255, 0.8),
         0 0 160px rgba(0, 255, 255, 0.6),
-        inset 0 0 40px rgba(255, 255, 255, 0.6);
+        inset 0 0 40px rgba(255, 255, 255, 0.15);
     }
   }
   
@@ -434,6 +434,14 @@
     0%, 100% { transform: translateY(-8px) scale(1.05) rotate(1deg); }
     25% { transform: translateY(-10px) scale(1.08) rotate(-1deg); }
     75% { transform: translateY(-6px) scale(1.03) rotate(2deg); }
+  }
+
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.6);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.4);
   }
   
   /* Custom scrollbar for webkit browsers */
