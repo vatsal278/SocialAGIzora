@@ -281,6 +281,12 @@ export default function Terminal() {
         >
           <span className="text-white text-shadow-lg">📁 ARCHIVES</span>
         </div>
+        <div 
+          onClick={() => window.location.href = '/manifesto'}
+          className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
+        >
+          <span className="text-white text-shadow-lg">📜 MANIFESTO</span>
+        </div>
       </div>
     </div>
   );

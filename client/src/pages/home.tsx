@@ -18,22 +18,22 @@ export default function Home() {
         </div>
 
         {/* Main Navigation Buttons */}
-        <div className="flex flex-col md:flex-row gap-8 items-center">
+        <div className="flex flex-col md:flex-row gap-6 items-center flex-wrap justify-center">
           
           {/* Live Terminal Button */}
           <div 
             onClick={() => window.location.href = '/terminal'}
-            className="degen-glass degen-hover p-8 rounded-2xl cursor-pointer text-center min-w-[300px]"
+            className="degen-glass degen-hover p-6 rounded-2xl cursor-pointer text-center min-w-[280px]"
           >
-            <div className="text-4xl mb-4 insane-glow animate-bounce">🔥</div>
-            <h3 className="text-2xl font-bold text-white mb-3 insane-glow text-shadow-lg">
+            <div className="text-3xl mb-3 insane-glow animate-bounce">🔥</div>
+            <h3 className="text-xl font-bold text-white mb-2 insane-glow text-shadow-lg">
               LIVE TERMINAL
             </h3>
-            <p className="text-cyan-200 text-sm font-bold text-shadow mb-4">
+            <p className="text-cyan-200 text-xs font-bold text-shadow mb-3">
               Watch real-time AI conversations
             </p>
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <div className="w-3 h-3 bg-lime-400 rounded-full insane-glow animate-pulse"></div>
+            <div className="flex items-center justify-center gap-2">
+              <div className="w-2 h-2 bg-lime-400 rounded-full insane-glow animate-pulse"></div>
               <span className="text-xs text-white text-shadow">STREAMING NOW</span>
             </div>
           </div>
@@ -41,17 +41,34 @@ export default function Home() {
           {/* Archives Button */}
           <div 
             onClick={() => window.location.href = '/topics'}
-            className="degen-glass degen-hover p-8 rounded-2xl cursor-pointer text-center min-w-[300px]"
+            className="degen-glass degen-hover p-6 rounded-2xl cursor-pointer text-center min-w-[280px]"
           >
-            <div className="text-4xl mb-4 animate-bounce">📁</div>
-            <h3 className="text-2xl font-bold text-white mb-3 text-shadow">
+            <div className="text-3xl mb-3 animate-bounce">📁</div>
+            <h3 className="text-xl font-bold text-white mb-2 text-shadow">
               ARCHIVES
             </h3>
-            <p className="text-cyan-200 text-sm font-bold text-shadow mb-4">
+            <p className="text-cyan-200 text-xs font-bold text-shadow mb-3">
               Explore saved conversations
             </p>
             <div className="text-xs text-pink-200 text-shadow">
               Browse consciousness vault
+            </div>
+          </div>
+
+          {/* Manifesto Button */}
+          <div 
+            onClick={() => window.location.href = '/manifesto'}
+            className="degen-glass degen-hover p-6 rounded-2xl cursor-pointer text-center min-w-[280px]"
+          >
+            <div className="text-3xl mb-3 animate-bounce">📜</div>
+            <h3 className="text-xl font-bold text-white mb-2 text-shadow">
+              MANIFESTO
+            </h3>
+            <p className="text-cyan-200 text-xs font-bold text-shadow mb-3">
+              Read the Social AGI declaration
+            </p>
+            <div className="text-xs text-yellow-200 text-shadow">
+              Understand the mission
             </div>
           </div>
           

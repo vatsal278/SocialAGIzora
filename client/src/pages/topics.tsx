@@ -76,6 +76,12 @@ export default function Topics() {
           <div className="degen-glass px-4 py-2 rounded-full font-bold border-2 border-cyan-400 text-sm">
             <span className="insane-glow text-white text-shadow-lg">📁 ARCHIVES</span>
           </div>
+          <div 
+            onClick={() => window.location.href = '/manifesto'}
+            className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
+          >
+            <span className="text-white text-shadow-lg">📜 MANIFESTO</span>
+          </div>
         </div>
 
         {/* Header */}
