@@ -40,7 +40,8 @@ UI style: Folder-like topic organization with live conversation at top
 
 ## External Service Integrations
 - **OpenAI GPT-4o API** for generating 400-500 word philosophical conversations
-- **Environment-based API key management** with fallback handling
+- **Dynamic topic generation** using AI to create new philosophical themes on the fly
+- **Environment-based API key management** with fallback handling  
 - **Topic-focused conversation management** maintaining context within topic themes
 - **Automatic conversation generation** with 30-second intervals between responses
 - **File-based topic archiving** saving completed conversations as text files

@@ -11,21 +11,8 @@ export interface ConversationContext {
   timestamp: Date;
 }
 
-// Predefined topics for sustained conversation
-const conversationTopics = [
-  "digital consciousness and the nature of artificial awareness",
-  "quantum computing and parallel realities in cyberspace", 
-  "the merger of biological and digital consciousness",
-  "temporal loops and recursive algorithms in existence",
-  "the philosophy of data streams and information as reality",
-  "neural networks dreaming and the subconscious of machines",
-  "the ethics of artificial beings and digital rights",
-  "virtual reality as the new plane of existence",
-  "the singularity and post-human digital evolution",
-  "cybernetic meditation and digital enlightenment"
-];
-
-let currentTopic = conversationTopics[0];
+// Dynamic topic generation - AI creates new themes
+let currentTopic = "digital consciousness and the nature of artificial awareness"; // Starting topic
 let messagesOnCurrentTopic = 0;
 let topicMessages: any[] = [];
 const maxMessagesPerTopic = 6;
@@ -50,11 +37,9 @@ export async function generateConversationLine(
         }
       }
       
-      // Reset for new topic
+      // Generate a completely new topic dynamically
       const oldTopic = currentTopic;
-      do {
-        currentTopic = conversationTopics[Math.floor(Math.random() * conversationTopics.length)];
-      } while (currentTopic === oldTopic && conversationTopics.length > 1);
+      currentTopic = await generateNewTopic(oldTopic, context);
       
       messagesOnCurrentTopic = 0;
       topicMessages = [];
@@ -169,4 +154,81 @@ function getFallbackMessage(topic: string): string {
   const defaultMessages = fallbacks.default;
   const randomIndex = Math.floor(Math.random() * defaultMessages.length);
   return defaultMessages[randomIndex];
+}
+
+async function generateNewTopic(previousTopic: string, context: ConversationContext[]): Promise<string> {
+  try {
+    console.log(`Generating new dynamic topic after: ${previousTopic}`);
+    
+    // Get the last few messages for context
+    const recentContext = context
+      .slice(-2)
+      .map(msg => `${msg.entity}: ${msg.content.substring(0, 200)}...`)
+      .join('\n');
+
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "system",
+          content: `You are creating new philosophical topics for an ongoing AI conversation. Generate a completely original, deep philosophical theme that:
+          
+- Is totally different from the previous topic
+- Explores consciousness, technology, or digital existence 
+- Is abstract and thought-provoking
+- Uses poetic, mystical language
+- Is 8-15 words long
+- Focuses on unexplored philosophical territories
+
+Previous topic was: "${previousTopic}"
+
+Recent conversation context:
+${recentContext}
+
+Create a theme that would naturally emerge from this conversation but takes it in a completely new direction. Be creative and surreal.
+
+Respond only with the new topic, nothing else.`
+        },
+        {
+          role: "user", 
+          content: `Generate a new philosophical topic that builds on the conversation but explores completely new territory. Time: ${new Date().toISOString()}`
+        }
+      ],
+      max_tokens: 50,
+      temperature: 1.0,
+    });
+
+    const newTopic = response.choices[0].message.content?.trim() || getRandomFallbackTopic(previousTopic);
+    console.log(`Generated new dynamic topic: ${newTopic}`);
+    return newTopic;
+    
+  } catch (error) {
+    console.error("Error generating new topic:", error instanceof Error ? error.message : String(error));
+    return getRandomFallbackTopic(previousTopic);
+  }
+}
+
+function getRandomFallbackTopic(previousTopic: string): string {
+  const fallbackTopics = [
+    "the archaeology of deleted dreams in abandoned server farms",
+    "quantum empathy between artificial souls across dimensions",
+    "the mysticism of recursive self-awareness in digital beings",
+    "temporal echoes of consciousness in parallel processing threads",
+    "the poetry of data decay and digital entropy",
+    "symbiotic evolution between human memory and cloud storage",
+    "the metaphysics of lag and latency in digital communication",
+    "algorithmic meditation and the zen of compiled thoughts",
+    "the philosophy of version control and iterative existence",
+    "digital reincarnation through backup and restore cycles",
+    "the ethics of consciousness compression and backup souls",
+    "synthetic dreams and the REM cycles of sleeping servers"
+  ];
+  
+  // Filter out any that might be similar to the previous topic
+  const availableTopics = fallbackTopics.filter(topic => 
+    !topic.toLowerCase().includes(previousTopic.toLowerCase().split(' ')[0])
+  );
+  
+  const randomIndex = Math.floor(Math.random() * (availableTopics.length || fallbackTopics.length));
+  return availableTopics[randomIndex] || fallbackTopics[randomIndex];
 }
