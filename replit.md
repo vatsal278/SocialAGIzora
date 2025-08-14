@@ -55,7 +55,7 @@ UI style: Folder-like topic organization with live conversation at top
 
 ## Development Features
 - **Hot module replacement** in development mode
-- **Replit integration** with banner and cartographer plugins
+- **Development tooling** with error overlays and cartographer plugins
 - **TypeScript strict mode** with comprehensive path mapping
 - **ESLint and Prettier** configuration for code quality
 - **Build optimization** with separate client/server bundling strategies
