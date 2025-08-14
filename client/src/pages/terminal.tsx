@@ -157,7 +157,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-20 pb-20 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
+    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-24 pb-24 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
       
       {/* Zora Terminal Header */}
       <div className="terminal-line mb-4 animate-fade-in font-meme-body">
@@ -265,7 +265,7 @@ export default function Terminal() {
       </div>
       
       {/* Top Navigation Links */}
-      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-40">
+      <div className="fixed top-2 left-1/2 transform -translate-x-1/2 flex flex-wrap gap-1 z-50 bg-black bg-opacity-20 backdrop-blur-sm rounded-full p-2">
         <div className="degen-glass px-4 py-2 rounded-full font-bold border-2 border-cyan-400 text-sm">
           <span className="insane-glow text-white text-shadow-lg">🔥 LIVE</span>
         </div>

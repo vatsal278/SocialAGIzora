@@ -58,9 +58,9 @@ export default function Topics() {
 
   return (
     <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono degen-grid">
-      <div className="p-6 pt-20">
+      <div className="p-6 pt-24 pb-8">
         {/* Top Navigation Links */}
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-40">
+        <div className="fixed top-2 left-1/2 transform -translate-x-1/2 flex flex-wrap gap-1 z-50 bg-black bg-opacity-20 backdrop-blur-sm rounded-full p-2">
           <div 
             onClick={() => window.location.href = '/'}
             className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
@@ -92,7 +92,7 @@ export default function Topics() {
           <p className="text-cyan-200 text-sm font-bold text-shadow">Saved Conversations</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)] max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-220px)] max-w-7xl mx-auto">
           
           {/* Topics List */}
           <div className="lg:col-span-1 space-y-4 overflow-hidden">

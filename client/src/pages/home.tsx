@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono degen-grid overflow-hidden">
-      <div className="flex flex-col items-center justify-center h-full p-6 pt-20">
+      <div className="flex flex-col items-center justify-center h-full p-6 pt-24 pb-8">
         
         {/* Main Logo/Title */}
         <div className="text-center mb-12">
