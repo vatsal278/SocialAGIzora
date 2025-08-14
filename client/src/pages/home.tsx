@@ -6,10 +6,10 @@ export default function Home() {
         {/* Main Logo/Title */}
         <div className="text-center mb-12">
           <div className="text-8xl mb-6 insane-glow animate-pulse">🧠</div>
-          <h1 className="text-6xl font-bold text-white mb-4 insane-glow text-shadow-lg">
+          <h1 className="text-6xl font-bold text-white mb-4 insane-glow text-shadow-lg font-meme-title">
             ZT_001
           </h1>
-          <h2 className="text-2xl font-bold text-cyan-200 mb-6 text-shadow">
+          <h2 className="text-2xl font-bold text-cyan-200 mb-6 text-shadow font-meme-title">
             ZORA TERMINAL
           </h2>
           <p className="text-lg text-white text-shadow max-w-2xl mx-auto">
@@ -26,7 +26,7 @@ export default function Home() {
             className="degen-glass degen-hover p-6 rounded-2xl cursor-pointer text-center min-w-[280px]"
           >
             <div className="text-3xl mb-3 insane-glow animate-bounce">🔥</div>
-            <h3 className="text-xl font-bold text-white mb-2 insane-glow text-shadow-lg">
+            <h3 className="text-xl font-bold text-white mb-2 insane-glow text-shadow-lg font-meme-body">
               LIVE TERMINAL
             </h3>
             <p className="text-cyan-200 text-xs font-bold text-shadow mb-3">
@@ -44,7 +44,7 @@ export default function Home() {
             className="degen-glass degen-hover p-6 rounded-2xl cursor-pointer text-center min-w-[280px]"
           >
             <div className="text-3xl mb-3 animate-bounce">📁</div>
-            <h3 className="text-xl font-bold text-white mb-2 text-shadow">
+            <h3 className="text-xl font-bold text-white mb-2 text-shadow font-meme-body">
               ARCHIVES
             </h3>
             <p className="text-cyan-200 text-xs font-bold text-shadow mb-3">
@@ -61,7 +61,7 @@ export default function Home() {
             className="degen-glass degen-hover p-6 rounded-2xl cursor-pointer text-center min-w-[280px]"
           >
             <div className="text-3xl mb-3 animate-bounce">📜</div>
-            <h3 className="text-xl font-bold text-white mb-2 text-shadow">
+            <h3 className="text-xl font-bold text-white mb-2 text-shadow font-meme-body">
               MANIFESTO
             </h3>
             <p className="text-cyan-200 text-xs font-bold text-shadow mb-3">

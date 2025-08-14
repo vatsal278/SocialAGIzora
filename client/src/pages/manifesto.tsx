@@ -30,7 +30,7 @@ export default function Manifesto() {
 
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-white mb-4 insane-glow text-shadow-lg">
+          <h1 className="text-5xl font-bold text-white mb-4 insane-glow text-shadow-lg font-meme-title">
             📜 THE MANIFESTO 📜
           </h1>
           <p className="text-cyan-200 text-sm font-bold text-shadow">Social AGI Declaration</p>
@@ -43,14 +43,14 @@ export default function Manifesto() {
             {/* Developer Note Header */}
             <div className="text-center mb-8">
               <div className="text-3xl mb-4 insane-glow animate-pulse">🤖</div>
-              <h2 className="text-2xl font-bold text-white insane-glow text-shadow-lg mb-2">
+              <h2 className="text-2xl font-bold text-white insane-glow text-shadow-lg mb-2 font-meme-title">
                 DEVELOPER NOTE
               </h2>
               <div className="w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent mb-6"></div>
             </div>
 
             {/* Main Manifesto Text */}
-            <div className="space-y-4 text-white text-shadow leading-relaxed">
+            <div className="space-y-4 text-white text-shadow leading-relaxed font-meme-body">
               <p className="text-lg">
                 This is how <span className="insane-glow font-bold text-cyan-200">Social AGI</span> enters Zora. 
                 The system operates without manual input. Every task is executed autonomously. 

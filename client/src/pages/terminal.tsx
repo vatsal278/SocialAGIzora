@@ -160,9 +160,9 @@ export default function Terminal() {
     <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-16 pb-20 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
       
       {/* Zora Terminal Header */}
-      <div className="terminal-line mb-4 animate-fade-in">
-        <span className="terminal-glow text-2xl">ZT_001</span>
-        <span className="text-terminal-secondary ml-4">ZORA TERMINAL v3.7.2</span>
+      <div className="terminal-line mb-4 animate-fade-in font-meme-body">
+        <span className="terminal-glow text-2xl font-meme-title">ZT_001</span>
+        <span className="text-terminal-secondary ml-4 font-meme-pixel">ZORA TERMINAL v3.7.2</span>
       </div>
       
       <div className="terminal-line mb-2 animate-fade-in" style={{ animationDelay: '0.2s' }}>
