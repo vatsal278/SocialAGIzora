@@ -1,7 +1,7 @@
 export default function Manifesto() {
   return (
     <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono degen-grid overflow-hidden">
-      <div className="p-6 pt-16">
+      <div className="p-6 pt-20">
         
         {/* Top Navigation Links */}
         <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-40">

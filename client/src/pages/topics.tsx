@@ -58,7 +58,7 @@ export default function Topics() {
 
   return (
     <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono degen-grid">
-      <div className="p-6 pt-16">
+      <div className="p-6 pt-20">
         {/* Top Navigation Links */}
         <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-40">
           <div 
@@ -92,7 +92,7 @@ export default function Topics() {
           <p className="text-cyan-200 text-sm font-bold text-shadow">Saved Conversations</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-180px)] max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)] max-w-7xl mx-auto">
           
           {/* Topics List */}
           <div className="lg:col-span-1 space-y-4 overflow-hidden">

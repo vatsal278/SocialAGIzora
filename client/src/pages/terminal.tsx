@@ -157,7 +157,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-16 pb-20 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
+    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-20 pb-20 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
       
       {/* Zora Terminal Header */}
       <div className="terminal-line mb-4 animate-fade-in font-meme-body">
