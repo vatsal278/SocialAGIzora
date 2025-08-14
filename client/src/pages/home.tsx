@@ -1,7 +1,37 @@
 export default function Home() {
   return (
-    <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono degen-grid overflow-hidden">
-      <div className="flex flex-col items-center justify-center h-full p-6 pt-24 pb-8">
+    <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono degen-grid flex flex-col">
+      {/* Fixed Top Navigation */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-30 backdrop-blur-md border-b border-white border-opacity-10">
+        <div className="flex justify-center py-2 px-4">
+          <div className="flex gap-1">
+            <div className="degen-glass px-3 py-1 rounded-full font-bold border border-cyan-400 text-xs">
+              <span className="insane-glow text-white text-shadow">🏠 HOME</span>
+            </div>
+            <div 
+              onClick={() => window.location.href = '/terminal'}
+              className="degen-glass degen-hover px-3 py-1 rounded-full font-bold cursor-pointer text-xs"
+            >
+              <span className="text-white text-shadow">🔥 TERMINAL</span>
+            </div>
+            <div 
+              onClick={() => window.location.href = '/topics'}
+              className="degen-glass degen-hover px-3 py-1 rounded-full font-bold cursor-pointer text-xs"
+            >
+              <span className="text-white text-shadow">📁 ARCHIVES</span>
+            </div>
+            <div 
+              onClick={() => window.location.href = '/manifesto'}
+              className="degen-glass degen-hover px-3 py-1 rounded-full font-bold cursor-pointer text-xs"
+            >
+              <span className="text-white text-shadow">📜 MANIFESTO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scrollable Content Area */}
+      <div className="flex-1 flex flex-col items-center justify-center overflow-y-auto pt-14 pb-4 px-6">
         
         {/* Main Logo/Title */}
         <div className="text-center mb-12">

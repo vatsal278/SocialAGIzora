@@ -157,10 +157,41 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-24 pb-24 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
-      
-      {/* Zora Terminal Header */}
-      <div className="terminal-line mb-4 animate-fade-in font-meme-body">
+    <div className="h-screen w-screen bg-terminal-bg degen-grid flex flex-col">
+      {/* Fixed Top Navigation */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-30 backdrop-blur-md border-b border-white border-opacity-10">
+        <div className="flex justify-center py-2 px-4">
+          <div className="flex gap-1">
+            <div className="degen-glass px-3 py-1 rounded-full font-bold border border-cyan-400 text-xs">
+              <span className="insane-glow text-white text-shadow">🔥 LIVE</span>
+            </div>
+            <div 
+              onClick={() => window.location.href = '/'}
+              className="degen-glass degen-hover px-3 py-1 rounded-full font-bold cursor-pointer text-xs"
+            >
+              <span className="text-white text-shadow">🏠 HOME</span>
+            </div>
+            <div 
+              onClick={() => window.location.href = '/topics'}
+              className="degen-glass degen-hover px-3 py-1 rounded-full font-bold cursor-pointer text-xs"
+            >
+              <span className="text-white text-shadow">📁 ARCHIVES</span>
+            </div>
+            <div 
+              onClick={() => window.location.href = '/manifesto'}
+              className="degen-glass degen-hover px-3 py-1 rounded-full font-bold cursor-pointer text-xs"
+            >
+              <span className="text-white text-shadow">📜 MANIFESTO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden pt-14 pb-4 px-4 md:px-6 terminal-container text-terminal-primary font-mono text-base leading-relaxed scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
+        
+        {/* Zora Terminal Header */}
+        <div className="terminal-line mb-4 animate-fade-in font-meme-body">
         <span className="terminal-glow text-2xl font-meme-title">ZT_001</span>
         <span className="text-terminal-secondary ml-4 font-meme-pixel">ZORA TERMINAL v3.7.2</span>
       </div>
@@ -252,40 +283,16 @@ export default function Terminal() {
         </div>
       )}
       
-      {/* Status Panel - Bottom Right */}
-      <div className="fixed bottom-4 right-4 text-xs degen-glass p-2 rounded-lg z-30">
-        <div className="text-white font-bold mb-1 text-center text-shadow text-xs">ZT_001</div>
-        <div className="space-y-1 text-center">
-          <div className="flex items-center justify-center gap-1">
-            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-lime-400 insane-glow' : 'bg-red-500'}`}></div>
-            <span className="text-white text-shadow text-xs">{isConnected ? 'LIVE' : 'OFF'}</span>
+        {/* Status Panel - Bottom Right */}
+        <div className="fixed bottom-4 right-4 text-xs degen-glass p-2 rounded-lg z-30">
+          <div className="text-white font-bold mb-1 text-center text-shadow text-xs">ZT_001</div>
+          <div className="space-y-1 text-center">
+            <div className="flex items-center justify-center gap-1">
+              <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-lime-400 insane-glow' : 'bg-red-500'}`}></div>
+              <span className="text-white text-shadow text-xs">{isConnected ? 'LIVE' : 'OFF'}</span>
+            </div>
+            <div className="text-cyan-200 text-shadow text-xs">{messages.length} MSGS</div>
           </div>
-          <div className="text-cyan-200 text-shadow text-xs">{messages.length} MSGS</div>
-        </div>
-      </div>
-      
-      {/* Top Navigation Links */}
-      <div className="fixed top-2 left-1/2 transform -translate-x-1/2 flex flex-wrap gap-1 z-50 bg-black bg-opacity-20 backdrop-blur-sm rounded-full p-2">
-        <div className="degen-glass px-4 py-2 rounded-full font-bold border-2 border-cyan-400 text-sm">
-          <span className="insane-glow text-white text-shadow-lg">🔥 LIVE</span>
-        </div>
-        <div 
-          onClick={() => window.location.href = '/'}
-          className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
-        >
-          <span className="text-white text-shadow-lg">🏠 HOME</span>
-        </div>
-        <div 
-          onClick={() => window.location.href = '/topics'}
-          className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
-        >
-          <span className="text-white text-shadow-lg">📁 ARCHIVES</span>
-        </div>
-        <div 
-          onClick={() => window.location.href = '/manifesto'}
-          className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
-        >
-          <span className="text-white text-shadow-lg">📜 MANIFESTO</span>
         </div>
       </div>
     </div>
