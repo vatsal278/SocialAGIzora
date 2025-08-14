@@ -63,6 +63,8 @@ export default function Terminal() {
           setTimeout(() => {
             setIsTyping(true);
           }, 25000);
+          
+
         } else if (data.type === 'error') {
           console.error('SSE Error:', data.message);
         }
@@ -102,9 +104,16 @@ export default function Terminal() {
         
         currentWordIndex++;
         
-        // Auto-scroll as text appears
+        // Auto-scroll as text appears, but respect user scroll position
         if (terminalRef.current) {
-          terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+          const container = terminalRef.current;
+          const isAtBottom = container.scrollTop >= container.scrollHeight - container.clientHeight - 150;
+          if (isAtBottom) {
+            container.scrollTo({
+              top: container.scrollHeight,
+              behavior: 'smooth'
+            });
+          }
         }
       } else {
         // Typing complete
@@ -123,8 +132,22 @@ export default function Terminal() {
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    if (terminalRef.current) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    if (terminalRef.current && messages.length > 0) {
+      // Check if user is at bottom before auto-scrolling
+      const container = terminalRef.current;
+      const isAtBottom = container.scrollTop >= container.scrollHeight - container.clientHeight - 200;
+      
+      if (isAtBottom) {
+        // Small delay to ensure content is rendered
+        setTimeout(() => {
+          if (terminalRef.current) {
+            terminalRef.current.scrollTo({
+              top: terminalRef.current.scrollHeight,
+              behavior: 'smooth'
+            });
+          }
+        }, 200);
+      }
     }
   }, [messages.length]);
 
@@ -134,7 +157,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-20 pb-32 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef}>
+    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-20 pb-32 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
       
       {/* Zora Terminal Header */}
       <div className="terminal-line mb-4 animate-fade-in">
@@ -164,10 +187,10 @@ export default function Terminal() {
         </span>
       </div>
       
-      {/* Conversation Container */}
-      <div id="conversation-lines" className="space-y-6 max-w-4xl mx-auto">
+      {/* Conversation Container - Fixed height and better scroll management */}
+      <div id="conversation-lines" className="space-y-6 max-w-4xl mx-auto min-h-[calc(100vh-300px)]">
         {messages.length === 0 && (
-          <div className="text-center py-12">
+          <div className="text-center py-12 sticky top-0">
             <div className="degen-glass degen-hover rounded-2xl p-8 mx-auto max-w-2xl">
               <div className="text-6xl mb-4 insane-glow animate-pulse">🧠</div>
               <div className="text-2xl font-bold text-white insane-glow text-shadow-lg mb-4">
