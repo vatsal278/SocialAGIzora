@@ -58,22 +58,22 @@ export default function Topics() {
 
   return (
     <div className="h-screen w-screen bg-terminal-bg text-terminal-primary font-mono degen-grid">
-      <div className="p-6 pt-20">
+      <div className="p-6 pt-16">
         {/* Top Navigation Links */}
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-40">
           <div 
             onClick={() => window.location.href = '/'}
-            className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
+            className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
           >
             <span className="text-white text-shadow-lg">🏠 HOME</span>
           </div>
           <div 
             onClick={() => window.location.href = '/terminal'}
-            className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
+            className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
           >
             <span className="text-white text-shadow-lg">🔥 TERMINAL</span>
           </div>
-          <div className="degen-glass px-6 py-3 rounded-full font-bold border-2 border-cyan-400">
+          <div className="degen-glass px-4 py-2 rounded-full font-bold border-2 border-cyan-400 text-sm">
             <span className="insane-glow text-white text-shadow-lg">📁 ARCHIVES</span>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function Topics() {
           <p className="text-cyan-200 text-sm font-bold text-shadow">Saved Conversations</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-200px)] max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-180px)] max-w-7xl mx-auto">
           
           {/* Topics List */}
           <div className="lg:col-span-1 space-y-4 overflow-hidden">

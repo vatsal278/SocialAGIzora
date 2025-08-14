@@ -157,7 +157,7 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-20 pb-32 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
+    <div className="terminal-container h-screen w-screen overflow-y-auto overflow-x-hidden p-4 md:p-6 pt-16 pb-20 bg-terminal-bg text-terminal-primary font-mono text-base leading-relaxed degen-grid scrollbar-thin scrollbar-thumb-cyan-400 scrollbar-track-transparent" ref={terminalRef} style={{ scrollBehavior: 'smooth' }}>
       
       {/* Zora Terminal Header */}
       <div className="terminal-line mb-4 animate-fade-in">
@@ -253,10 +253,10 @@ export default function Terminal() {
       )}
       
       {/* Status Panel - Bottom Right */}
-      <div className="fixed bottom-4 right-4 text-xs degen-glass p-3 rounded-xl">
-        <div className="text-white font-bold mb-2 text-center text-shadow">ZT_001</div>
+      <div className="fixed bottom-4 right-4 text-xs degen-glass p-2 rounded-lg z-30">
+        <div className="text-white font-bold mb-1 text-center text-shadow text-xs">ZT_001</div>
         <div className="space-y-1 text-center">
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-1">
             <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-lime-400 insane-glow' : 'bg-red-500'}`}></div>
             <span className="text-white text-shadow text-xs">{isConnected ? 'LIVE' : 'OFF'}</span>
           </div>
@@ -265,19 +265,19 @@ export default function Terminal() {
       </div>
       
       {/* Top Navigation Links */}
-      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
-        <div className="degen-glass px-6 py-3 rounded-full font-bold border-2 border-cyan-400">
-          <span className="insane-glow text-white text-shadow-lg">🔥 LIVE TERMINAL 🔥</span>
+      <div className="fixed top-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-40">
+        <div className="degen-glass px-4 py-2 rounded-full font-bold border-2 border-cyan-400 text-sm">
+          <span className="insane-glow text-white text-shadow-lg">🔥 LIVE</span>
         </div>
         <div 
           onClick={() => window.location.href = '/'}
-          className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
+          className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
         >
           <span className="text-white text-shadow-lg">🏠 HOME</span>
         </div>
         <div 
           onClick={() => window.location.href = '/topics'}
-          className="degen-glass degen-hover px-6 py-3 rounded-full font-bold cursor-pointer"
+          className="degen-glass degen-hover px-4 py-2 rounded-full font-bold cursor-pointer text-sm"
         >
           <span className="text-white text-shadow-lg">📁 ARCHIVES</span>
         </div>
